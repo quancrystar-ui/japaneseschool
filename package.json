@@ -1,0 +1,10 @@
+{
+  "name": "japanese-classroom-metaverse",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Three.js로 만든 3D 일본어 어학 교실 프로토타입",
+  "scripts": {
+    "start": "npx --yes serve . -l 3000"
+  }
+}

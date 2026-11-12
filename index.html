@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>日本語教室 | 3D 일본어 교실</title>
+
+  <!-- 일본어·한국어 글꼴 (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- importmap: Three.js CDN 연결 -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- 3D 화면이 그려지는 캔버스 -->
+  <canvas id="scene"></canvas>
+
+  <!-- 화면 가운데 조준점과, 바라보는 물건의 이름표 -->
+  <div id="crosshair" class="crosshair" hidden></div>
+  <div id="hint" class="hint" hidden></div>
+
+  <!-- 물건을 클릭했을 때 아래쪽에 뜨는 단어 카드 -->
+  <div id="word-card" class="word-card" hidden></div>
+
+  <!-- 시작 / 일시정지 화면 -->
+  <div id="start-overlay" class="overlay">
+    <div class="overlay-card">
+      <h1 lang="ja">日本語教室</h1>
+      <p id="overlay-lead" class="overlay-lead">3D 일본어 교실 프로토타입</p>
+      <dl class="controls-help">
+        <div><dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>이동</dd></div>
+        <div><dt>마우스</dt><dd>시점 돌리기</dd></div>
+        <div><dt>클릭</dt><dd>칠판이나 물건을 눌러 학습</dd></div>
+        <div><dt><kbd>Shift</kbd></dt><dd>빠르게 걷기</dd></div>
+        <div><dt><kbd>Esc</kbd></dt><dd>잠시 멈추기</dd></div>
+      </dl>
+      <button id="enter-button" class="primary" type="button">교실에 들어가기</button>
+    </div>
+  </div>
+
+  <!-- 칠판을 클릭하면 열리는 학습 패널 -->
+  <aside id="lesson-panel" class="panel" aria-label="학습 패널" hidden>
+    <header class="panel-header">
+      <div>
+        <p class="panel-kicker" lang="ja">今日の授業</p>
+        <h2 lang="ja">第1課 自己紹介</h2>
+        <p class="panel-sub">1과 자기소개</p>
+      </div>
+      <button id="panel-close" class="close-button" type="button" aria-label="패널 닫기">×</button>
+    </header>
+
+    <div class="panel-body">
+      <p id="speech-note" class="note" hidden></p>
+
+      <label class="slow-toggle">
+        <input id="slow-toggle" type="checkbox">
+        천천히 듣기
+      </label>
+
+      <h3>오늘의 문장</h3>
+      <ul id="sentence-list" class="item-list"></ul>
+
+      <h3>교실 단어</h3>
+      <ul id="word-list" class="word-grid"></ul>
+    </div>
+  </aside>
+
+  <!-- 모든 JavaScript의 시작점 -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
