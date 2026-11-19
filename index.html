@@ -22,6 +22,60 @@
     }
   </script>
 </head>
+<button
+  onclick="window.openHiragana()"
+  style="
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:9998;
+    padding:14px 22px;
+    border:0;
+    border-radius:12px;
+    background:#263f70;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+  "
+>
+  あ 히라가나 학습
+</button>
+<!-- 일본어 학습 패널 -->
+<div id="learning-panel" style="
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+  max-width:700px;
+  max-height:85vh;
+  overflow-y:auto;
+  background:#fff;
+  color:#222;
+  padding:24px;
+  border-radius:18px;
+  z-index:9999;
+">
+  <button id="close-learning" style="float:right;">✕ 닫기</button>
+  <div id="learning-content"></div>
+</div>
+
+<script type="module">
+  import { renderHiragana } from './js/learning/hiragana.js';
+
+  const panel = document.getElementById('learning-panel');
+  const content = document.getElementById('learning-content');
+
+  window.openHiragana = function() {
+    panel.style.display = 'block';
+    renderHiragana(content);
+  };
+
+  document.getElementById('close-learning').addEventListener('click', () => {
+    panel.style.display = 'none';
+  });
+</script>
 <body>
   <!-- 3D 화면이 그려지는 캔버스 -->
   <canvas id="scene"></canvas>
